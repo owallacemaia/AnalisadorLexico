@@ -34,6 +34,8 @@ namespace AnalisadorLexico
             this.lblSelecionar = new MaterialSkin.Controls.MaterialLabel();
             this.btnSelecionarArquivo = new MaterialSkin.Controls.MaterialRaisedButton();
             this.rtbTexto = new System.Windows.Forms.RichTextBox();
+            this.rtbFinal = new System.Windows.Forms.RichTextBox();
+            this.lbToken = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // ofdArquivo
@@ -51,6 +53,7 @@ namespace AnalisadorLexico
             this.btnExecutar.TabIndex = 1;
             this.btnExecutar.Text = "Executar";
             this.btnExecutar.UseVisualStyleBackColor = true;
+            this.btnExecutar.Click += new System.EventHandler(this.btnExecutar_Click);
             // 
             // lblSelecionar
             // 
@@ -86,11 +89,30 @@ namespace AnalisadorLexico
             this.rtbTexto.TabIndex = 3;
             this.rtbTexto.Text = "";
             // 
+            // rtbFinal
+            // 
+            this.rtbFinal.Location = new System.Drawing.Point(627, 219);
+            this.rtbFinal.Name = "rtbFinal";
+            this.rtbFinal.Size = new System.Drawing.Size(596, 436);
+            this.rtbFinal.TabIndex = 4;
+            this.rtbFinal.Text = "";
+            // 
+            // lbToken
+            // 
+            this.lbToken.FormattingEnabled = true;
+            this.lbToken.ItemHeight = 16;
+            this.lbToken.Location = new System.Drawing.Point(16, 683);
+            this.lbToken.Name = "lbToken";
+            this.lbToken.Size = new System.Drawing.Size(382, 244);
+            this.lbToken.TabIndex = 5;
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1261, 703);
+            this.ClientSize = new System.Drawing.Size(1261, 946);
+            this.Controls.Add(this.lbToken);
+            this.Controls.Add(this.rtbFinal);
             this.Controls.Add(this.rtbTexto);
             this.Controls.Add(this.btnSelecionarArquivo);
             this.Controls.Add(this.btnExecutar);
@@ -108,6 +130,8 @@ namespace AnalisadorLexico
         private MaterialSkin.Controls.MaterialLabel lblSelecionar;
         private MaterialSkin.Controls.MaterialRaisedButton btnSelecionarArquivo;
         private System.Windows.Forms.RichTextBox rtbTexto;
+        private System.Windows.Forms.RichTextBox rtbFinal;
+        private System.Windows.Forms.ListBox lbToken;
     }
 }
 

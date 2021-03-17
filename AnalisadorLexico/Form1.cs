@@ -16,5 +16,10 @@ namespace AnalisadorLexico
         {
             InitializeComponent();
         }
+
+        private void btnExecutar_Click(object sender, EventArgs e)
+        {
+            rtbFinal.Text = new Analisador().AnalisadorExec(rtbTexto.Text);
+        }
     }
 }
