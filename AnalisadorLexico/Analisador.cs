@@ -8,6 +8,12 @@ namespace AnalisadorLexico
 {
     class Analisador
     {
+        private List<string> listaLexema = new List<string>();
+
+        private int idOp = 0;
+
+        private int status = 0;
+
         private bool isKeyWords(string token)
         {
             if (token.Length == 0)
@@ -36,13 +42,7 @@ namespace AnalisadorLexico
 
         public string AnalisadorExec(string texto)
         {
-            var listaLexema = new List<string>();
-
-            int status = 0;
-
             int coluna = 0;
-
-            int idOp = 0;
 
             int fila = 1;
 
@@ -176,19 +176,17 @@ namespace AnalisadorLexico
                         }
                         else
                         {
-                            bool identificador = false;
+                            string identificador = null;
                             /*Usar essa função para separar as tabelas*/
                             identificador = buscarToken(lexema);
-                            if (identificador)
+                            if (identificador != null)
                             {
-                                textoConc += "<" + lexema + ">";
+                                textoConc += identificador;
                             }
                             else
                             {
                                 //Tabela Token
-                                listaLexema.Add(lexema);
-                                idOp += 1;
-                                textoConc += $"<id,{idOp}>"; 
+                                 
                             }
                             lexema = "";
                             i--;
@@ -309,14 +307,26 @@ namespace AnalisadorLexico
             return textoConc;
         }
 
-        public bool buscarToken(string lexema)
+        public string buscarToken(string lexema)
         {
             if (isKeyWords(lexema))
-                return true;
-            if (isOperator(lexema))
-                return true;
-
-            return false;
+                return $"<{lexema}>";
+            else if (isOperator(lexema))
+                return $"<op, {lexema}>";
+            else
+            {
+                if (listaLexema.Exists(e => lexema == e))
+                {
+                    var lex = listaLexema.FindIndex(e => lexema == e);
+                    return $"<id, {lex + 1}>";
+                }
+                else
+                {
+                    listaLexema.Add(lexema);
+                    idOp += 1;
+                    return $"<id, {idOp}>";
+                }
+            }
         }
     }
 }
