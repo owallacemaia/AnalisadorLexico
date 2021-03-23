@@ -8,11 +8,23 @@ namespace AnalisadorLexico
 {
     class Analisador
     {
-        private List<string> listaLexema = new List<string>();
+        public List<string> listaLexema = new List<string>();
 
         private int idOp = 0;
 
         private int status = 0;
+
+        private bool flag = false;
+
+        private int coluna = 0;
+
+        private int fila = 1;
+
+        private string textoConc = "";
+
+        private string lexema = "";
+
+        private char c;
 
         private bool isKeyWords(string token)
         {
@@ -42,15 +54,6 @@ namespace AnalisadorLexico
 
         public string AnalisadorExec(string texto)
         {
-            int coluna = 0;
-
-            int fila = 1;
-
-            string textoConc = "";
-
-            string lexema = "";
-            char c;
-
             texto = texto + " ";
             for (int i = 0; i < texto.Length; i++)
             {
@@ -76,90 +79,23 @@ namespace AnalisadorLexico
                             i--;
                             coluna--;
                         }
-                        else if (c == ',')
-                        {
-                            status = 6;
-                            i--;
-                            coluna--;
-                        }
                         else if (c == ' ')
                         {
                             status = 0;
+                        }
+                        else if (isOperator(c.ToString()))
+                        {
+                            status = 1;
+                            flag = true;
+                            lexema += c;
+                            i--;
                         }
                         else if (c == '\n')
                         {
                             coluna = 0;
                             textoConc += '\n'; 
                             fila++;
-                            status = 0;
-                        }
-                        else if (c == '{')
-                        {
-                            lexema += c;
-                            lexema = "";
-                        }
-                        else if (c == '}')
-                        {
-                            lexema += c;
-                            lexema = "";
-                        }
-                        else if (c == '(')
-                        {
-                            lexema += c;
-                            lexema = "";
-                        }
-                        else if (c == ')')
-                        {
-                            lexema += c;
-                            lexema = "";
-                        }
-                        else if (c == ',')
-                        {
-                            lexema += c;
-                            lexema = "";
-                        }
-
-                        else if (c == ';')
-                        {
-                            lexema += c;
-                            lexema = "";
-                        }
-
-                        else if (c == '<')
-                        {
-                            lexema += c;
-                            lexema = "";
-                        }
-                        else if (c == '>')
-                        {
-                            lexema += c;
-                            lexema = "";
-                        }
-
-                        else if (c == '.')
-                        {
-                            lexema += c;
-                            lexema = "";
-                        }
-                        else if (c == '+')
-                        {
-                            lexema += c;
-                            lexema = "";
-                        }
-                        else if (c == '-')
-                        {
-                            lexema += c;
-                            lexema = "";
-                        }
-                        else if (c == '*')
-                        {
-                            lexema += c;
-                            lexema = "";
-                        }
-                        else if (c == '/')
-                        {
-                            lexema += c;
-                            lexema = "";
+                            status = 1;
                         }
                         else
                         {
@@ -177,11 +113,17 @@ namespace AnalisadorLexico
                         else
                         {
                             string identificador = null;
-                            /*Usar essa função para separar as tabelas*/
+                            /*Usado para separar os lexamas*/
                             identificador = buscarToken(lexema);
                             if (identificador != null)
                             {
                                 textoConc += identificador;
+
+                                if(flag)
+                                {
+                                    i++;
+                                    flag = false;
+                                }
                             }
                             else
                             {
@@ -204,6 +146,19 @@ namespace AnalisadorLexico
                         {
                             status = 8;
                             lexema += c;
+                        }
+                        else if(c == ' ')
+                        {
+                            status = 1;
+                            i--;
+                        }
+                        else if (c == '\n')
+                        {
+                            coluna = 0;
+                            //textoConc += '\n';
+                            fila++;
+                            status = 1;
+                            i--;
                         }
                         else
                         {
@@ -242,7 +197,7 @@ namespace AnalisadorLexico
                         }
                         else
                         {
-                            status = 6;
+                            status = 1;
                             i--;
                             coluna--;
                         }
@@ -254,13 +209,6 @@ namespace AnalisadorLexico
                             status = 0;
                             lexema = "";
                         }
-                        else if (c == ',')
-                        {
-                            lexema += c;
-                            status = 0;
-                            lexema = "";
-                        }
-
                         break;
 
                     case 8:
@@ -313,7 +261,11 @@ namespace AnalisadorLexico
                 return $"<{lexema}>";
             else if (isOperator(lexema))
                 return $"<op, {lexema}>";
-            else
+            else if (lexema.Where(c => char.IsDigit(c)).Count() > 0)
+            {
+                return $"<num, {lexema}>";
+            }
+            else if (lexema.Length > 0 && !lexema.Contains('"'))
             {
                 if (listaLexema.Exists(e => lexema == e))
                 {
@@ -327,6 +279,13 @@ namespace AnalisadorLexico
                     return $"<id, {idOp}>";
                 }
             }
+            else if (lexema.Contains('"'))
+            {
+                flag = true;
+                return $@"<literal, {lexema}>";
+            }
+
+            return null;
         }
     }
 }

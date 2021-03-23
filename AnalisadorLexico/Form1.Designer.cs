@@ -34,8 +34,8 @@ namespace AnalisadorLexico
             this.lblSelecionar = new MaterialSkin.Controls.MaterialLabel();
             this.btnSelecionarArquivo = new MaterialSkin.Controls.MaterialRaisedButton();
             this.rtbTexto = new System.Windows.Forms.RichTextBox();
-            this.rtbFinal = new System.Windows.Forms.RichTextBox();
             this.lbToken = new System.Windows.Forms.ListBox();
+            this.rtbFinal = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // ofdArquivo
@@ -83,36 +83,39 @@ namespace AnalisadorLexico
             // 
             // rtbTexto
             // 
+            this.rtbTexto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbTexto.Location = new System.Drawing.Point(16, 219);
             this.rtbTexto.Name = "rtbTexto";
-            this.rtbTexto.Size = new System.Drawing.Size(596, 436);
+            this.rtbTexto.Size = new System.Drawing.Size(508, 299);
             this.rtbTexto.TabIndex = 3;
             this.rtbTexto.Text = "";
             // 
-            // rtbFinal
-            // 
-            this.rtbFinal.Location = new System.Drawing.Point(627, 219);
-            this.rtbFinal.Name = "rtbFinal";
-            this.rtbFinal.Size = new System.Drawing.Size(596, 436);
-            this.rtbFinal.TabIndex = 4;
-            this.rtbFinal.Text = "";
-            // 
             // lbToken
             // 
+            this.lbToken.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbToken.FormattingEnabled = true;
-            this.lbToken.ItemHeight = 16;
-            this.lbToken.Location = new System.Drawing.Point(16, 683);
+            this.lbToken.ItemHeight = 20;
+            this.lbToken.Location = new System.Drawing.Point(16, 546);
             this.lbToken.Name = "lbToken";
-            this.lbToken.Size = new System.Drawing.Size(382, 244);
+            this.lbToken.Size = new System.Drawing.Size(382, 204);
             this.lbToken.TabIndex = 5;
+            // 
+            // rtbFinal
+            // 
+            this.rtbFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtbFinal.Location = new System.Drawing.Point(560, 219);
+            this.rtbFinal.Name = "rtbFinal";
+            this.rtbFinal.Size = new System.Drawing.Size(508, 299);
+            this.rtbFinal.TabIndex = 6;
+            this.rtbFinal.Text = "";
             // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1261, 946);
-            this.Controls.Add(this.lbToken);
+            this.ClientSize = new System.Drawing.Size(1100, 868);
             this.Controls.Add(this.rtbFinal);
+            this.Controls.Add(this.lbToken);
             this.Controls.Add(this.rtbTexto);
             this.Controls.Add(this.btnSelecionarArquivo);
             this.Controls.Add(this.btnExecutar);
@@ -130,8 +133,8 @@ namespace AnalisadorLexico
         private MaterialSkin.Controls.MaterialLabel lblSelecionar;
         private MaterialSkin.Controls.MaterialRaisedButton btnSelecionarArquivo;
         private System.Windows.Forms.RichTextBox rtbTexto;
-        private System.Windows.Forms.RichTextBox rtbFinal;
         private System.Windows.Forms.ListBox lbToken;
+        private System.Windows.Forms.RichTextBox rtbFinal;
     }
 }
 

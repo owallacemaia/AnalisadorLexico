@@ -19,7 +19,18 @@ namespace AnalisadorLexico
 
         private void btnExecutar_Click(object sender, EventArgs e)
         {
-            rtbFinal.Text = new Analisador().AnalisadorExec(rtbTexto.Text);
+            lbToken.Items.Clear();
+            Analisador an = new Analisador();
+            rtbFinal.Text = an.AnalisadorExec(rtbTexto.Text);
+            int op = 0;
+            foreach (var item in an.listaLexema)
+            {
+                if(item != null)
+                {
+                    op = an.listaLexema.FindIndex(a => item == a) + 1;
+                    lbToken.Items.Add(op + " " + item);
+                }
+            }
         }
     }
 }
