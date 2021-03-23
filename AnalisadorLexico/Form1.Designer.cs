@@ -80,13 +80,14 @@ namespace AnalisadorLexico
             this.btnSelecionarArquivo.TabIndex = 2;
             this.btnSelecionarArquivo.Text = "Selecionar Arquivo";
             this.btnSelecionarArquivo.UseVisualStyleBackColor = true;
+            this.btnSelecionarArquivo.Click += new System.EventHandler(this.btnSelecionarArquivo_Click);
             // 
             // rtbTexto
             // 
             this.rtbTexto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbTexto.Location = new System.Drawing.Point(16, 219);
+            this.rtbTexto.Location = new System.Drawing.Point(12, 219);
             this.rtbTexto.Name = "rtbTexto";
-            this.rtbTexto.Size = new System.Drawing.Size(508, 299);
+            this.rtbTexto.Size = new System.Drawing.Size(560, 300);
             this.rtbTexto.TabIndex = 3;
             this.rtbTexto.Text = "";
             // 
@@ -103,9 +104,9 @@ namespace AnalisadorLexico
             // rtbFinal
             // 
             this.rtbFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbFinal.Location = new System.Drawing.Point(560, 219);
+            this.rtbFinal.Location = new System.Drawing.Point(646, 220);
             this.rtbFinal.Name = "rtbFinal";
-            this.rtbFinal.Size = new System.Drawing.Size(508, 299);
+            this.rtbFinal.Size = new System.Drawing.Size(560, 299);
             this.rtbFinal.TabIndex = 6;
             this.rtbFinal.Text = "";
             // 
@@ -113,7 +114,7 @@ namespace AnalisadorLexico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1100, 868);
+            this.ClientSize = new System.Drawing.Size(1218, 868);
             this.Controls.Add(this.rtbFinal);
             this.Controls.Add(this.lbToken);
             this.Controls.Add(this.rtbTexto);
