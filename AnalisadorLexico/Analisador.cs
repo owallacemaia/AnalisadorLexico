@@ -41,12 +41,12 @@ namespace AnalisadorLexico
 
         private bool isOperator(string token)
         {
-            if (token.Length == 0 || token.Length > 1)
+            if (!(token.Length > 0 || token.Length <= 2))
                 return false;
             var operador = new List<string>()
             {
                 "=", "+", "-", ">", "<", "==", "<=",
-                ">=", ",", "*", "/", "%", "&&", "||"
+                ">=", ",", "*", "/", "%", "&&", "|", "=>"
             };
 
             return operador.Exists(e => token == e);
@@ -85,15 +85,13 @@ namespace AnalisadorLexico
                         }
                         else if (isOperator(c.ToString()))
                         {
-                            status = 1;
-                            flag = true;
+                            status = 2;
                             lexema += c;
-                            i--;
                         }
                         else if (c == '\n')
                         {
                             coluna = 0;
-                            textoConc += '\n'; 
+                            textoConc += '\n';
                             fila++;
                             status = 1;
                         }
@@ -119,7 +117,7 @@ namespace AnalisadorLexico
                             {
                                 textoConc += identificador;
 
-                                if(flag)
+                                if (flag)
                                 {
                                     i++;
                                     flag = false;
@@ -128,7 +126,7 @@ namespace AnalisadorLexico
                             else
                             {
                                 //Tabela Token
-                                 
+
                             }
                             lexema = "";
                             i--;
@@ -147,15 +145,19 @@ namespace AnalisadorLexico
                             status = 8;
                             lexema += c;
                         }
-                        else if(c == ' ')
+                        else if (c == ' ')
                         {
                             status = 1;
                             i--;
                         }
+                        else if (isOperator(c.ToString()))
+                        {
+                            status = 2;
+                            lexema += c;
+                        }
                         else if (c == '\n')
                         {
                             coluna = 0;
-                            //textoConc += '\n';
                             fila++;
                             status = 1;
                             i--;
@@ -225,7 +227,7 @@ namespace AnalisadorLexico
                             }
                             break;
                         }
-                        
+
                     case 9:
                         {
                             if (char.IsDigit(c))

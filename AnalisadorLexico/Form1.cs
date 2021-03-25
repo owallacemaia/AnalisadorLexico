@@ -28,7 +28,7 @@ namespace AnalisadorLexico
                 if(item != null)
                 {
                     op = an.listaLexema.FindIndex(a => item == a) + 1;
-                    lbToken.Items.Add(op + " " + item);
+                    lbToken.Items.Add("ID) " + op + " - " + item);
                 }
             }
         }
@@ -36,13 +36,18 @@ namespace AnalisadorLexico
         private void btnSelecionarArquivo_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = ("Braselisco (*.BRO)|*.BRO");//+ "All (*.*)|*.*")
+            openFileDialog1.Filter = ("Braselisco (*.BRO)|*.BRO");
             openFileDialog1.ShowDialog();
             if (openFileDialog1.FileName != "")
             {
                 lblSelecionar.Text = openFileDialog1.SafeFileName;
                 rtbTexto.LoadFile(openFileDialog1.FileName, RichTextBoxStreamType.PlainText);
             }
+        }
+
+        private void lbToken_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

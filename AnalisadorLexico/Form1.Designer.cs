@@ -100,6 +100,7 @@ namespace AnalisadorLexico
             this.lbToken.Name = "lbToken";
             this.lbToken.Size = new System.Drawing.Size(382, 204);
             this.lbToken.TabIndex = 5;
+            this.lbToken.SelectedIndexChanged += new System.EventHandler(this.lbToken_SelectedIndexChanged);
             // 
             // rtbFinal
             // 
