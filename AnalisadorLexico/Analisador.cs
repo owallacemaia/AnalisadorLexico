@@ -10,11 +10,15 @@ namespace AnalisadorLexico
     {
         public List<string> listaLexema = new List<string>();
 
+        public List<string> naoLexema = new List<string>();
+
         private int idOp = 0;
 
         private int status = 0;
 
         private bool flag = false;
+
+        private bool flagDec = false;
 
         private int coluna = 0;
 
@@ -85,8 +89,10 @@ namespace AnalisadorLexico
                         }
                         else if (isOperator(c.ToString()))
                         {
-                            status = 2;
+                            status = 1;
                             lexema += c;
+                            i--;
+                            flag = true;
                         }
                         else if (c == '\n')
                         {
@@ -111,7 +117,13 @@ namespace AnalisadorLexico
                         else
                         {
                             string identificador = null;
-                            /*Usado para separar os lexamas*/
+
+                            if (lexema == "declare")
+                                flagDec = true;
+
+                            if (lexema == "numerico" || lexema == "literal")
+                                flagDec = false;
+
                             identificador = buscarToken(lexema);
                             if (identificador != null)
                             {
@@ -122,11 +134,6 @@ namespace AnalisadorLexico
                                     i++;
                                     flag = false;
                                 }
-                            }
-                            else
-                            {
-                                //Tabela Token
-
                             }
                             lexema = "";
                             i--;
@@ -260,7 +267,9 @@ namespace AnalisadorLexico
         public string buscarToken(string lexema)
         {
             if (isKeyWords(lexema))
+            {
                 return $"<{lexema}>";
+            }
             else if (isOperator(lexema))
                 return $"<op, {lexema}>";
             else if (lexema.Where(c => char.IsDigit(c)).Count() > 0)
@@ -273,6 +282,11 @@ namespace AnalisadorLexico
                 {
                     var lex = listaLexema.FindIndex(e => lexema == e);
                     return $"<id, {lex + 1}>";
+                }
+                else if (!flagDec)
+                {
+                    naoLexema.Add(lexema);
+                    return lexema;
                 }
                 else
                 {

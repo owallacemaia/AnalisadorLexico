@@ -31,6 +31,15 @@ namespace AnalisadorLexico
                     lbToken.Items.Add("ID) " + op + " - " + item);
                 }
             }
+
+            foreach (var item in an.naoLexema)
+            {
+                if(item != null)
+                {
+                    lbToken.Items.Add(item + " - " + "Não Identificado!");
+                }
+            }
+
         }
 
         private void btnSelecionarArquivo_Click(object sender, EventArgs e)
@@ -48,6 +57,11 @@ namespace AnalisadorLexico
         private void lbToken_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void rtbTexto_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

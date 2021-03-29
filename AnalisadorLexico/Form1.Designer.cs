@@ -90,6 +90,7 @@ namespace AnalisadorLexico
             this.rtbTexto.Size = new System.Drawing.Size(560, 300);
             this.rtbTexto.TabIndex = 3;
             this.rtbTexto.Text = "";
+            this.rtbTexto.TextChanged += new System.EventHandler(this.rtbTexto_TextChanged);
             // 
             // lbToken
             // 
