@@ -50,8 +50,8 @@ namespace AnalisadorLexico
                 return false;
             var operador = new List<string>()
             {
-                "=", "+", "-", ">", "<", "==", "<=",
-                ">=", ",", "*", "/", "%", "&&", "|", "=>"
+                "=", "+", "-", ">", "<", "==", "<=", ";",
+                ">=", ",", "*", "/", "%", "&&", "|", "=>", "."
             };
 
             return operador.Exists(e => token == e);
