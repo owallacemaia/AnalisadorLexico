@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace AnalisadorLexico
@@ -273,7 +274,7 @@ namespace AnalisadorLexico
             }
             else if (isOperator(lexema))
                 return $"<op, {lexema}>";
-            else if (lexema.Where(c => char.IsDigit(c)).Count() > 0)
+            else if (lexema.Where(c => char.IsDigit(c)).Count() > 0 && !Regex.IsMatch(lexema, @"^[a-zA-Z]"))
             {
                 return $"<num, {lexema}>";
             }
