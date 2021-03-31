@@ -36,7 +36,7 @@ namespace AnalisadorLexico
             {
                 if(item != null)
                 {
-                    lbToken.Items.Add(item + " - " + "Não Identificado!");
+                    lbToken.Items.Add(item + " - " + "Lexema não Identificado!");
                 }
             }
 
@@ -61,7 +61,14 @@ namespace AnalisadorLexico
 
         private void rtbTexto_TextChanged(object sender, EventArgs e)
         {
-            
+            timerChange.Enabled = false;
+            timerChange.Enabled = true;
+        }
+
+        private void timerChange_Tick(object sender, EventArgs e)
+        {
+            timerChange.Enabled = false;
+            btnExecutar.PerformClick();
         }
     }
 }

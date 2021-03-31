@@ -159,8 +159,8 @@ namespace AnalisadorLexico
                         }
                         else if (isOperator(c.ToString()))
                         {
-                            status = 2;
-                            lexema += c;
+                            status = 1;
+                            i--;
                         }
                         else if (c == '\n')
                         {
@@ -206,6 +206,7 @@ namespace AnalisadorLexico
                         }
                         else
                         {
+                            lexema += c;
                             status = 1;
                             i--;
                             coluna--;

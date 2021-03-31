@@ -29,6 +29,7 @@ namespace AnalisadorLexico
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ofdArquivo = new System.Windows.Forms.OpenFileDialog();
             this.btnExecutar = new MaterialSkin.Controls.MaterialRaisedButton();
             this.lblSelecionar = new MaterialSkin.Controls.MaterialLabel();
@@ -36,6 +37,7 @@ namespace AnalisadorLexico
             this.rtbTexto = new System.Windows.Forms.RichTextBox();
             this.lbToken = new System.Windows.Forms.ListBox();
             this.rtbFinal = new System.Windows.Forms.RichTextBox();
+            this.timerChange = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // ofdArquivo
@@ -112,6 +114,10 @@ namespace AnalisadorLexico
             this.rtbFinal.TabIndex = 6;
             this.rtbFinal.Text = "";
             // 
+            // timerChange
+            // 
+            this.timerChange.Tick += new System.EventHandler(this.timerChange_Tick);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -138,6 +144,7 @@ namespace AnalisadorLexico
         private System.Windows.Forms.RichTextBox rtbTexto;
         private System.Windows.Forms.ListBox lbToken;
         private System.Windows.Forms.RichTextBox rtbFinal;
+        private System.Windows.Forms.Timer timerChange;
     }
 }
 
