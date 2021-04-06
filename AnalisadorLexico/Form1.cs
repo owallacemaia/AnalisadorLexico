@@ -36,9 +36,10 @@ namespace AnalisadorLexico
             {
                 if(item != null)
                 {
-                    lbToken.Items.Add(item + " - " + "Lexema não Identificado!");
+                    lbToken.Items.Add(item + " - " + "Lexema não Identificado");
                 }
             }
+           
 
         }
 
